@@ -1,22 +1,22 @@
 {
-  "name": "fine-name-lint",
+  "name": "file-name-lint",
   "version": "1.0.0",
   "description": "",
   "main": "cli.js",
   "bin": {
-    "fine-name-lint": "bin/fine-name-lint.js"
+    "file-name-lint": "bin/file-name-lint.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/regepan/fine-name-lint.git"
+    "url": "git+https://github.com/regepan/file-name-lint.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/regepan/fine-name-lint/issues"
+    "url": "https://github.com/regepan/file-name-lint/issues"
   },
-  "homepage": "https://github.com/regepan/fine-name-lint#readme"
+  "homepage": "https://github.com/regepan/file-name-lint#readme"
 }
