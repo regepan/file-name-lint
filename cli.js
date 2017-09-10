@@ -5,25 +5,14 @@ const sgf = require('staged-git-files');
 const symbols = require("log-symbols");
 
 sgf('ACM', (err, files) => {
-    if (err) {
-        console.error(err);
-    }
+  if (err) {
+    console.error(err);
+  }
 
-    let hasCSS = false;
-    let hasSCSS = false;
-
-    files.forEach((file) => {
-      if (file.filename.match(/.*?\.css$/)) {
-        hasCSS = true;
-      }
-
-      if (file.filename.match(/.*?\.scss$/)) {
-        hasSCSS = true;
-      }
-    });
-
-    if ((hasCSS === true && hasSCSS === false) || hasCSS === false && hasSCSS === true) {
-      console.error('  ' + symbols['error'], 'SCSS & CSS file pair need to be added in one commit');
+  files.forEach((file) => {
+    if (file.filename.match(/\s/)) {
+      console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid for file name. Remove it.]');
       process.exit(1);
     }
+  });
 });
