@@ -14,5 +14,12 @@ sgf('ACM', (err, files) => {
       console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid for file name. Remove it.]');
       process.exit(1);
     }
+
+    const extension = file.filename.match(/.+(\.[^.]+$)/)[1];
+
+    if (extension.match(/[A-Z]/)) {
+      console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
+      process.exit(1);
+    }
   });
 });
