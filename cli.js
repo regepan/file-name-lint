@@ -21,5 +21,10 @@ sgf('ACM', (err, files) => {
       console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
       process.exit(1);
     }
+
+    if (extension === '.jpeg') {
+      console.error('  ' + symbols['error'], extension + ' should be ".jpg".');
+      process.exit(1);
+    }
   });
 });
