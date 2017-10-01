@@ -11,12 +11,12 @@ sgf('ACM', (err, files) => {
 
   files.forEach((file) => {
     if (file.filename.match(/\s/)) {
-      console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid for file name. Remove it.]');
+      console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid file name. Remove it.]');
       process.exit(1);
     }
 
-    if (file.filename.match(/^\x01-\x7E/)) {
-      console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid for file name. Change to half width.]');
+    if (file.filename.match(/[^\x01-\x7E]/)) {
+      console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid file name. Change to half width.]');
       process.exit(1);
     }
 
