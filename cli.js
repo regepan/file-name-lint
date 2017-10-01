@@ -15,6 +15,11 @@ sgf('ACM', (err, files) => {
       process.exit(1);
     }
 
+    if (file.filename.match(/^\x01-\x7E/)) {
+      console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid for file name. Change to half width.]');
+      process.exit(1);
+    }
+
     const extension = file.filename.match(/.+(\.[^.]+$)/)[1];
 
     if (extension.match(/[A-Z]/)) {
