@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
+const path = require('path');
 const sgf = require('staged-git-files');
 const symbols = require("log-symbols");
 
@@ -20,7 +21,8 @@ sgf('ACM', (err, files) => {
       process.exit(1);
     }
 
-    const extension = file.filename.match(/.+(\.[^.]+$)/)[1];
+    const pathObject = path.parse(file.filename);
+    const extension = pathObject['ext'];
 
     if (extension.match(/[A-Z]/)) {
       console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
