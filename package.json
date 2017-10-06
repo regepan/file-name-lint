@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/regepan/file-name-lint/issues"
   },
-  "homepage": "https://github.com/regepan/file-name-lint#readme"
+  "homepage": "https://github.com/regepan/file-name-lint#readme",
+  "devDependencies": {
+    "path": "^0.12.7"
+  }
 }
