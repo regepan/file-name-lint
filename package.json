@@ -19,7 +19,9 @@
     "url": "https://github.com/regepan/file-name-lint/issues"
   },
   "homepage": "https://github.com/regepan/file-name-lint#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "install": "^0.10.1",
     "path": "^0.12.7"
   }
 }
