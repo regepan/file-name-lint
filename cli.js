@@ -11,12 +11,12 @@ sgf('ACM', (err, files) => {
   }
 
   files.forEach((file) => {
-    if (file.filename.match(/\s/)) {
-      console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid file name. Remove it.]');
+    if (checkWhiteSpace(file.filename)) {
+      console.error('  ' + symbols['error'], fileName + ' ["white space" is invalid file name. Remove it.]');
       process.exit(1);
     }
 
-    if (file.filename.match(/[^\x01-\x7E]/)) {
+    if (checkFullWidthLetter(file.filename)) {
       console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid file name. Change to half width.]');
       process.exit(1);
     }
@@ -24,14 +24,30 @@ sgf('ACM', (err, files) => {
     const pathObject = path.parse(file.filename);
     const extension = pathObject['ext'];
 
-    if (extension.match(/[A-Z]/)) {
+    if (checkExtensionIsLowercase(extension)) {
       console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
       process.exit(1);
     }
 
-    if (extension === '.jpeg') {
+    if (checkJpeg(extension)) {
       console.error('  ' + symbols['error'], extension + ' should be ".jpg".');
       process.exit(1);
     }
   });
 });
+
+module.exports.checkWhiteSpace = function (fileName) {
+  return fileName.match(/\s/);
+};
+
+module.exports.checkFullWidthLetter = function (fileName) {
+  return fileName.match(/[^\x01-\x7E]/);
+};
+
+module.exports.checkExtensionIsLowercase = function (extension) {
+  return extension.match(/[A-Z]/);
+};
+
+module.exports.checkJpeg = function (extension) {
+  return extension === '.jpeg';
+};
