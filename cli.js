@@ -20,9 +20,15 @@ sgf('ACM', (err, files) => {
       console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid file name. Change to half width.]');
       process.exit(1);
     }
-
+    
     const pathObject = path.parse(file.filename);
+    const name = pathObject['name'];
     const extension = pathObject['ext'];
+
+    if (checkSymbol(name)) {
+      console.error('  ' + symbols['error'], name + ' is invalid');
+      process.exit(1);
+    }
 
     if (checkExtensionIsLowercase(extension)) {
       console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
@@ -36,18 +42,28 @@ sgf('ACM', (err, files) => {
   });
 });
 
-module.exports.checkWhiteSpace = function (fileName) {
+const checkWhiteSpace = function (fileName) {
   return fileName.match(/\s/);
 };
 
-module.exports.checkFullWidthLetter = function (fileName) {
+const checkFullWidthLetter = function (fileName) {
   return fileName.match(/[^\x01-\x7E]/);
 };
 
-module.exports.checkExtensionIsLowercase = function (extension) {
+const checkSymbol = function (fileName) {
+  return fileName.match(/[!"#$%&'()\*,\/:;<=>?\[\\\]^`{|}~]/);
+};
+
+const checkExtensionIsLowercase = function (extension) {
   return extension.match(/[A-Z]/);
 };
 
-module.exports.checkJpeg = function (extension) {
+const checkJpeg = function (extension) {
   return extension === '.jpeg';
 };
+
+module.exports.checkWhiteSpace = checkWhiteSpace;
+module.exports.checkFullWidthLetter = checkFullWidthLetter;
+module.exports.checkSymbol = checkSymbol;
+module.exports.checkExtensionIsLowercase = checkExtensionIsLowercase;
+module.exports.checkJpeg = checkJpeg;

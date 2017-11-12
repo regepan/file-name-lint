@@ -17,6 +17,14 @@ it("full width letter is invalid", () => {
   }
 });
 
+it("symbol is invalid", () => {
+  const val = fileNameLint.checkSymbol("apple*.png");
+
+  if (val) {
+    assert(true);
+  }
+});
+
 it("upper case extension is invalid", () => {
   const val1 = fileNameLint.checkExtensionIsLowercase("img/apple.PNG");
 
