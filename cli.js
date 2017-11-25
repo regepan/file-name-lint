@@ -12,7 +12,7 @@ sgf('ACM', (err, files) => {
 
   files.forEach((file) => {
     if (checkWhiteSpace(file.filename)) {
-      console.error('  ' + symbols['error'], fileName + ' ["white space" is invalid file name. Remove it.]');
+      console.error('  ' + symbols['error'], file.filename + ' ["white space" is invalid file name. Remove it.]');
       process.exit(1);
     }
 
