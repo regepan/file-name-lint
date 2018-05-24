@@ -20,7 +20,7 @@ sgf('ACM', (err, files) => {
       console.error('  ' + symbols['error'], file.filename + ' ["full width letter" is invalid file name. Change to half width.]');
       process.exit(1);
     }
-    
+
     const pathObject = path.parse(file.filename);
     const name = pathObject['name'];
     const extension = pathObject['ext'];
@@ -30,13 +30,18 @@ sgf('ACM', (err, files) => {
       process.exit(1);
     }
 
-    if (checkExtensionIsLowercase(extension)) {
-      console.error('  ' + symbols['error'], extension + ' file name extension should be lowercase.');
+    if (matchUppercase(file.filename)) {
+      console.error('  ' + symbols['error'], file.filename + '. File name should be lowercase.');
+      process.exit(1);
+    }
+
+    if (matchUppercase(extension)) {
+      console.error('  ' + symbols['error'], extension + '. File extension should be lowercase.');
       process.exit(1);
     }
 
     if (checkJpeg(extension)) {
-      console.error('  ' + symbols['error'], extension + ' should be ".jpg".');
+      console.error('  ' + symbols['error'], extension + '. Should be ".jpg".');
       process.exit(1);
     }
   });
@@ -54,7 +59,7 @@ const checkSymbol = function (fileName) {
   return fileName.match(/[!"#$%&'()\*,\/:;<=>?\[\\\]^`{|}~]/);
 };
 
-const checkExtensionIsLowercase = function (extension) {
+const matchUppercase = function (extension) {
   return extension.match(/[A-Z]/);
 };
 
@@ -65,5 +70,5 @@ const checkJpeg = function (extension) {
 module.exports.checkWhiteSpace = checkWhiteSpace;
 module.exports.checkFullWidthLetter = checkFullWidthLetter;
 module.exports.checkSymbol = checkSymbol;
-module.exports.checkExtensionIsLowercase = checkExtensionIsLowercase;
+module.exports.matchUppercase = matchUppercase;
 module.exports.checkJpeg = checkJpeg;
