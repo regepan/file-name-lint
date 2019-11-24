@@ -3,14 +3,14 @@ const assert = require("assert");
 
 it("white space is invalid", () => {
   const val = fileNameLint.checkWhiteSpace("img/a pple.png");
-  
+
   if (val) {
     assert(true);
   }
 });
 
 it("full width letter is invalid", () => {
-  const val = fileNameLint.checkExtensionIsLowercase("img/ａ.png");
+  const val = fileNameLint.checkFullWidthLetter("img/ａpple.png");
 
   if (val) {
     assert(true);
@@ -26,14 +26,14 @@ it("symbol is invalid", () => {
 });
 
 it("upper case extension is invalid", () => {
-  const val1 = fileNameLint.checkExtensionIsLowercase("img/apple.PNG");
+  const val1 = fileNameLint.matchUppercase("img/apple.PNG");
 
   if (val1) {
     assert(true);
   }
 
-  const val2 = fileNameLint.checkExtensionIsLowercase("img/apple.Jpg");
-  
+  const val2 = fileNameLint.matchUppercase("img/apple.Jpg");
+
   if (val2) {
     assert(true);
   }
