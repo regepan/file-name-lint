@@ -35,6 +35,11 @@ sgf('ACM', (err, files) => {
       process.exit(1);
     }
 
+    if (checkIco(file.filename)) {
+      console.error('  ' + symbols['error'], file.filename + '. No need to omit file name. Use "icon"');
+      process.exit(1);
+    }
+
     if (matchUppercase(extension)) {
       console.error('  ' + symbols['error'], extension + '. File extension should be lowercase.');
       process.exit(1);
@@ -59,6 +64,10 @@ const checkSymbol = function (fileName) {
   return fileName.match(/[!"#$%&'()\*,\/:;<=>?\[\\\]^`{|}~]/);
 };
 
+const checkIco = function (fileName) {
+  return fileName.match(/.*?ico-.*?/);
+};
+
 const matchUppercase = function (extension) {
   return extension.match(/[A-Z]/);
 };
@@ -72,3 +81,4 @@ module.exports.checkFullWidthLetter = checkFullWidthLetter;
 module.exports.checkSymbol = checkSymbol;
 module.exports.matchUppercase = matchUppercase;
 module.exports.checkJpeg = checkJpeg;
+module.exports.checkIco = checkIco;

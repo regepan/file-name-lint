@@ -46,3 +46,19 @@ it("jpeg is invalid", () => {
     assert(true);
   }
 });
+
+it('No need to omit file name. Use "icon"', () => {
+  const val = fileNameLint.checkIco("img/ico-apple.jpg");
+  
+  if (val) {
+    assert(true);
+  }
+});
+
+it('No need to omit file name. Use "icon"', () => {
+  const val = fileNameLint.checkIco("img/icon-apple.jpg");
+  
+  if (val === null) {
+    assert(true);
+  }
+});
