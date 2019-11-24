@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/regepan/file-name-lint#readme",
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^6.2.2"
   },
   "dependencies": {
-    "install": "^0.10.1",
+    "install": "^0.13.0",
     "path": "^0.12.7"
   }
 }
